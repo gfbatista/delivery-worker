@@ -1,41 +1,41 @@
 application:
   name: "Delivery Worker"
-  description: "Worker responsável por captar os pedidos via fila RabbitMQ e atualizar o pagamento "
+  description: "Worker responsavel por captar os pedidos via fila RabbitMQ e atualizar o pagamento"
 
 spring:
   rabbitmq:
-    host: "\${RABBITMQ_HOST:localhost}"
-    port: "\${RABBITMQ_PORT:5672}"
-    username: "\${RABBITMQ_USERNAME:root}"
-    password: "\${RABBITMQ_PASSWORD:root}"
-    virtual-host: "\${RABBITMQ_VIRTUAL_HOST:/}"
-    dynamic: "\${RABBITMQ_DYNAMIC:false}"
+    host: "${RABBITMQ_HOST:localhost}"
+    port: "${RABBITMQ_PORT:5672}"
+    username: "${RABBITMQ_USERNAME:root}"
+    password: "${RABBITMQ_PASSWORD:root}"
+    virtual-host: "${RABBITMQ_VIRTUAL_HOST:/}"
+    dynamic: "${RABBITMQ_DYNAMIC:false}"
     delivery-order:
       main:
         queue:
-          auto-startup: "\${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_AUTO_STARTUP:true}"
-          name: "\${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_NAME:delivery-order-created}"
+          auto-startup: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_AUTO_STARTUP:true}"
+          name: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_NAME:delivery-order-created}"
           routing:
-            key: "\${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_ROUTING_KEY:delivery-order-created}"
+            key: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_ROUTING_KEY:delivery-order-created}"
           exchange:
-            name: "\${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_EXCHANGE_NAME:delivery-order-exchange}"
-            type: "\${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_EXCHANGE_TYPE:topic}"
-          max-retry-attempts: "\${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_MAX_RETRY_ATTEMPTS:3}"
-          ttl-retry: "\${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_TTL_RETRY_IN_MILLISECONDS:10000}"
+            name: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_EXCHANGE_NAME:delivery-order-exchange}"
+            type: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_EXCHANGE_TYPE:topic}"
+          max-retry-attempts: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_MAX_RETRY_ATTEMPTS:3}"
+          ttl-retry: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_TTL_RETRY_IN_MILLISECONDS:10000}"
       wait:
         queue:
-          name: "\${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_NAME:delivery-order-created.wait}"
+          name: "${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_NAME:delivery-order-created.wait}"
           routing:
-            key: "\${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_ROUTING_KEY:delivery-order-created.wait}"
+            key: "${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_ROUTING_KEY:delivery-order-created.wait}"
           exchange:
-            name: "\${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_EXCHANGE_NAME:delivery-order-exchange}"
-            type: "\${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_EXCHANGE_TYPE:topic}"
+            name: "${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_EXCHANGE_NAME:delivery-order-exchange}"
+            type: "${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_EXCHANGE_TYPE:topic}"
       parking-lot:
         queue:
-          auto-startup: "\${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_AUTO_STARTUP:false}"
-          name: "\${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_NAME:delivery-order-created.parkingLot}"
+          auto-startup: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_AUTO_STARTUP:false}"
+          name: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_NAME:delivery-order-created.parkingLot}"
           routing:
-            key: "\${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_ROUTING_KEY:delivery-order-created.parkingLot}"
+            key: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_ROUTING_KEY:delivery-order-created.parkingLot}"
           exchange:
-            name: "\${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_EXCHANGE_NAME:delivery-order-exchange}"
-            type: "\${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_EXCHANGE_TYPE:topic}"
+            name: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_EXCHANGE_NAME:delivery-order-exchange}"
+            type: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_EXCHANGE_TYPE:topic}"
