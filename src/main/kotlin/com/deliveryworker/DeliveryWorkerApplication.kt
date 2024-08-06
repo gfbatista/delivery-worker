@@ -1,4 +1,4 @@
-package com.delivery.delivery_worker
+package com.deliveryworker
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
