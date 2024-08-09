@@ -6,15 +6,15 @@ spring:
   rabbitmq:
     host: "${RABBITMQ_HOST:localhost}"
     port: "${RABBITMQ_PORT:5672}"
-    username: "${RABBITMQ_USERNAME:root}"
-    password: "${RABBITMQ_PASSWORD:root}"
+    username: "${RABBITMQ_USERNAME:guest_outgoing}"
+    password: "${RABBITMQ_PASSWORD:guest_outgoing}"
     virtual-host: "${RABBITMQ_VIRTUAL_HOST:/}"
     dynamic: "${RABBITMQ_DYNAMIC:false}"
     delivery-order:
       main:
         queue:
           auto-startup: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_AUTO_STARTUP:true}"
-          name: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_NAME:delivery-order-created}"
+          name: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_NAME:delivery-order-created-queue}"
           routing:
             key: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_ROUTING_KEY:delivery-order-created}"
           exchange:
@@ -24,7 +24,7 @@ spring:
           ttl-retry: "${RABBITMQ_DELIVERY_ORDER_MAIN_QUEUE_TTL_RETRY_IN_MILLISECONDS:10000}"
       wait:
         queue:
-          name: "${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_NAME:delivery-order-created.wait}"
+          name: "${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_NAME:delivery-order-created-queue.wait}"
           routing:
             key: "${RABBITMQ_DELIVERY_ORDER_WAIT_QUEUE_ROUTING_KEY:delivery-order-created.wait}"
           exchange:
@@ -33,7 +33,7 @@ spring:
       parking-lot:
         queue:
           auto-startup: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_AUTO_STARTUP:false}"
-          name: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_NAME:delivery-order-created.parkingLot}"
+          name: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_NAME:delivery-order-created-queue.parkingLot}"
           routing:
             key: "${RABBITMQ_DELIVERY_ORDER_PARKING_LOT_QUEUE_ROUTING_KEY:delivery-order-created.parkingLot}"
           exchange:
